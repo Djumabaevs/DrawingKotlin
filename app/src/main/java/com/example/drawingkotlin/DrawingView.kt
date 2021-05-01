@@ -58,11 +58,20 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-
+                if (touchX != null) {
+                    if (touchY != null) {
+                        mDrawPath!!.lineTo(touchX, touchY)
+                    }
+                }
             }
+            MotionEvent.ACTION_UP -> {
+                mDrawPath = CustomPath(color, mBrushSize)
+            }
+            else -> return false
         }
+        invalidate()
 
-        return super.onTouchEvent(event)
+        return true
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
