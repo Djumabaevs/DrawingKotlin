@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         val mediumBtn = bindingBrush.ibMediumBrush
-        smallBtn.setOnClickListener {
+        mediumBtn.setOnClickListener {
             binding.drawingView.setSizeForBrush(20.toFloat())
             brushDialog.dismiss()
         }
 
         val largeBtn = bindingBrush.ibLargeBrush
-        smallBtn.setOnClickListener {
+        largeBtn.setOnClickListener {
             binding.drawingView.setSizeForBrush(30.toFloat())
             brushDialog.dismiss()
         }
