@@ -4,6 +4,7 @@ import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.drawingkotlin.databinding.ActivityMainBinding
+import com.example.drawingkotlin.databinding.DialogBrushSizeBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -14,13 +15,37 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.drawingView.setSizeForBrush(20.toFloat())
+
+        binding.ibBrush.setOnClickListener {
+            showBrushSizeChooserDialog()
+        }
     }
 
     private fun showBrushSizeChooserDialog() {
+        var bindingBrush = DialogBrushSizeBinding.inflate(layoutInflater)
         val brushDialog = Dialog(this)
-        brushDialog.setContentView(R.layout.dialog_brush_size)
+        brushDialog.setContentView(bindingBrush.root)
         brushDialog.setTitle("Brush size: ")
-        val smallBtn = brushDialog.
+
+        val smallBtn = bindingBrush.ibSmallBrush
+        smallBtn.setOnClickListener {
+            binding.drawingView.setSizeForBrush(10.toFloat())
+            brushDialog.dismiss()
+        }
+
+        val mediumBtn = bindingBrush.ibMediumBrush
+        smallBtn.setOnClickListener {
+            binding.drawingView.setSizeForBrush(20.toFloat())
+            brushDialog.dismiss()
+        }
+
+        val largeBtn = bindingBrush.ibLargeBrush
+        smallBtn.setOnClickListener {
+            binding.drawingView.setSizeForBrush(30.toFloat())
+            brushDialog.dismiss()
+        }
+
+        brushDialog.show()
 
     }
 }
