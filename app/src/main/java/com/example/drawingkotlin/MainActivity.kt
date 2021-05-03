@@ -12,7 +12,9 @@ import androidx.core.view.get
 import com.example.drawingkotlin.databinding.ActivityMainBinding
 import com.example.drawingkotlin.databinding.DialogBrushSizeBinding
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
+import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
+import com.github.dhaval2404.colorpicker.model.ColorSwatch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -31,7 +33,19 @@ class MainActivity : AppCompatActivity() {
                 .setDefaultColor(Color.GREEN)     // Pass Default Color
                 .setColorListener { color, colorHex ->
                     // Handle Color Selection
-                  binding.drawingView.setBackgroundColor(color)
+                  binding.drawingView.setColor(colorHex)
+                }
+                .show()
+
+            MaterialColorPickerDialog
+                .Builder(this)        					// Pass Activity Instance
+                .setTitle("Pick Theme")           		// Default "Choose Color"
+                .setColorShape(ColorShape.SQAURE)   	// Default ColorShape.CIRCLE
+                .setColorSwatch(ColorSwatch._300)   	// Default ColorSwatch._500
+                .setDefaultColor(Color.BLUE) 		// Pass Default Color
+                .setColorListener { color, colorHex ->
+                    // Handle Color Selection
+                    binding.drawingView.setColor(colorHex)
                 }
                 .show()
         }
