@@ -99,6 +99,14 @@
       android:background="@color/random"
       android:src="@drawable/pallet_normal"
       android:tag="@color/random"/>
+  <ImageButton
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_margin="2dp"
+      android:contentDescription="color_pallet"
+      android:background="@color/teal_700"
+      android:src="@drawable/pallet_normal"
+      android:tag="@color/teal_700"/>
  </LinearLayout>
 
 

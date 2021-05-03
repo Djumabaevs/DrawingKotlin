@@ -3,16 +3,23 @@ package com.example.drawingkotlin
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import com.example.drawingkotlin.databinding.ActivityMainBinding
 import com.example.drawingkotlin.databinding.DialogBrushSizeBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private var mImageButtonCurrentPaint: ImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        mImageButtonCurrentPaint = binding.llPaintColors[1] as ImageButton
+        mImageButtonCurrentPaint!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pallet_pressed))
 
         binding.drawingView.setSizeForBrush(20.toFloat())
 
