@@ -28,6 +28,7 @@
      app:layout_constraintRight_toRightOf="parent"
      app:layout_constraintTop_toBottomOf="@id/drawing_view">
 
+
   <ImageButton
       android:layout_width="25dp"
       android:layout_height="25dp"
@@ -118,6 +119,16 @@
       android:onClick="paintClicked"
       android:tag="@color/teal_700"/>
 
+  <ImageButton
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_margin="2dp"
+      android:contentDescription="color_pallet"
+      android:background="@color/white"
+      android:src="@drawable/pallet_normal"
+      android:onClick="paintClicked"
+      android:tag="@color/white"/>
+
  </LinearLayout>
 
 
@@ -132,5 +143,16 @@
      app:layout_constraintLeft_toLeftOf="parent"
      app:layout_constraintRight_toRightOf="parent"
      app:layout_constraintBottom_toBottomOf="parent"/>
+
+ <Button
+     android:id="@+id/btn_chooser"
+     android:layout_width="72dp"
+     android:layout_height="44dp"
+     android:layout_marginBottom="4dp"
+     android:text="@string/Rbj"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.956"
+     app:layout_constraintStart_toEndOf="@+id/ib_brush" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

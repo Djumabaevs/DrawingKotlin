@@ -1,14 +1,18 @@
 package com.example.drawingkotlin
 
 import android.app.Dialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColor
 import androidx.core.view.get
 import com.example.drawingkotlin.databinding.ActivityMainBinding
 import com.example.drawingkotlin.databinding.DialogBrushSizeBinding
+import com.github.dhaval2404.colorpicker.ColorPickerDialog
+import com.github.dhaval2404.colorpicker.model.ColorShape
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -18,6 +22,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.btnChooser.setOnClickListener {
+            ColorPickerDialog
+                .Builder(this)        				// Pass Activity Instance
+                .setTitle("Pick Theme")           	// Default "Choose Color"
+                .setColorShape(ColorShape.SQAURE)   // Default ColorShape.CIRCLE
+                .setDefaultColor(Color.GREEN)     // Pass Default Color
+                .setColorListener { color, colorHex ->
+                    // Handle Color Selection
+                  binding.drawingView.setBackgroundColor(color)
+                }
+                .show()
+        }
 
         mImageButtonCurrentPaint = binding.llPaintColors[1] as ImageButton
         mImageButtonCurrentPaint!!.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pallet_pressed))
