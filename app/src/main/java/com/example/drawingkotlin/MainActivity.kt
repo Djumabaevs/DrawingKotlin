@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 .show()
 
-            MaterialColorPickerDialog
+           /* MaterialColorPickerDialog
                 .Builder(this)        					// Pass Activity Instance
                 .setTitle("Pick Theme")           		// Default "Choose Color"
                 .setColorShape(ColorShape.SQAURE)   	// Default ColorShape.CIRCLE
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                     // Handle Color Selection
                     binding.drawingView.setColor(colorHex)
                 }
-                .show()
+                .show()*/
         }
 
         mImageButtonCurrentPaint = binding.llPaintColors[1] as ImageButton
