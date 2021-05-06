@@ -1,5 +1,6 @@
 package com.example.drawingkotlin
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,6 +21,7 @@ import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
+import com.github.dhaval2404.colorpicker.util.setVisibility
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
@@ -78,7 +80,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        if(resultCode == Activity.RESULT_OK) {
+            if(requestCode == GALLERY) {
+                try {
+                    if(data!!.data != null) {
+                        binding.ivBackground.visibility = View.VISIBLE
+                        binding.ivBackground.setImageURI(data.data)
+                    } else {
+                        Toast.makeText(this@MainActivity, "Error in parsing the image or its corrupted",
+                        Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
     private fun showBrushSizeChooserDialog() {
