@@ -62,6 +62,14 @@ class MainActivity : AppCompatActivity() {
         binding.ibBrush.setOnClickListener {
             showBrushSizeChooserDialog()
         }
+
+        binding.ibGallery.setOnClickListener {
+            if(isReadStorageAllowed()) {
+
+            } else {
+                requestStoragePermission()
+            }
+        }
     }
 
     private fun showBrushSizeChooserDialog() {
@@ -137,6 +145,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val STORAGE_PERMISSION_CODE  =1
-
     }
 }
