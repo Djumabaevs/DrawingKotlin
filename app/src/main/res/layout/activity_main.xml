@@ -23,7 +23,6 @@
   <ImageView
       android:id="@+id/iv_background"
       android:scaleType="centerCrop"
-      android:src="@drawable/image"
       android:contentDescription="image_background"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
@@ -172,6 +171,16 @@
      />
 
  <ImageButton
+     android:id="@+id/ib_undo"
+     android:layout_width="50dp"
+     android:layout_height="50dp"
+     android:src="@drawable/undo"
+     android:contentDescription="brush_image"
+     android:scaleType="fitXY"
+     android:layout_margin="5dp"
+/>
+
+ <ImageButton
      android:id="@+id/ib_brush"
      android:layout_width="50dp"
      android:layout_height="50dp"
@@ -179,7 +188,7 @@
      android:contentDescription="brush_image"
      android:scaleType="fitXY"
      android:layout_margin="5dp"
-/>
+     />
 
  <Button
      android:id="@+id/btn_chooser"
