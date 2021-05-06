@@ -130,6 +130,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun isReadStorageAllowed(): Boolean {
+        val result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
     companion object {
         private const val STORAGE_PERMISSION_CODE  =1
 
