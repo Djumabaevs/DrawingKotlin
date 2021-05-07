@@ -193,10 +193,15 @@ class MainActivity : AppCompatActivity() {
 
     private inner class BitmapAsyncTask(val mBitmap: Bitmap): ViewModel() {
         fun execute() = viewModelScope.launch() {
-
-
+            onPreExecute()
+            val result = doInBackground()
+            onPostExecute(result)
         }
-
+        private lateinit var mProgressDialog: Dialog
+        private fun onPreExecute() {
+            showProgressDialog()
+        }
+        private
     }
 
     companion object {
