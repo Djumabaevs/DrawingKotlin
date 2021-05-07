@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +18,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColor
 import androidx.core.view.get
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.drawingkotlin.databinding.ActivityMainBinding
 import com.example.drawingkotlin.databinding.DialogBrushSizeBinding
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
@@ -24,6 +27,7 @@ import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
 import com.github.dhaval2404.colorpicker.util.setVisibility
+import kotlinx.coroutines.launch
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
@@ -185,6 +189,14 @@ class MainActivity : AppCompatActivity() {
         }
         view.draw(canvas)
         return returnedBitmap
+    }
+
+    private inner class BitmapAsyncTask(val mBitmap: Bitmap): ViewModel() {
+        fun execute() = viewModelScope.launch() {
+
+
+        }
+
     }
 
     companion object {
