@@ -93,6 +93,14 @@ class MainActivity : AppCompatActivity() {
         binding.ibUndo.setOnClickListener {
             binding.drawingView.onClickUndo()
         }
+
+        binding.ibSave.setOnClickListener {
+            if(isReadStorageAllowed()) {
+                BitmapAsyncTask(getBitmapFromView(binding.flDrawingViewContainer)).execute()
+            } else {
+                requestStoragePermission()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -157,7 +165,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestStoragePermission() {
-        if(ActivityCompat.shouldShowRequestPermissionRationale(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE).toString())) {
             Toast.makeText(this, "Need permission to add background", Toast.LENGTH_SHORT).show()
         }
@@ -197,6 +206,13 @@ class MainActivity : AppCompatActivity() {
         view.draw(canvas)
         return returnedBitmap
     }
+
+
+
+
+
+
+
 
     private inner class BitmapAsyncTask(val mBitmap: Bitmap): ViewModel() {
         fun execute() = viewModelScope.launch() {
@@ -255,6 +271,13 @@ class MainActivity : AppCompatActivity() {
             mProgressDialog.dismiss()
         }
     }
+
+
+
+
+
+
+
 
     companion object {
         private const val STORAGE_PERMISSION_CODE  = 1
