@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.media.MediaScannerConnection
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,6 +34,7 @@ import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.net.Inet4Address
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
@@ -225,8 +227,27 @@ class MainActivity : AppCompatActivity() {
             }
             return@withContext result
         }
+        private fun onPostExecute(result: String?) {
+            cancelDialog()
+            if(!result!!.isEmpty()) {
+                Toast.makeText(this@MainActivity, "File saved successfully: $result",
+                Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@MainActivity, "Something went wrong when saving the file",
+                    Toast.LENGTH_SHORT).show()
+            }
+            MediaScannerConnection.scanFile(this@MainActivity, arrayOf(result), null) {
+                path, uri -> val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND
+                shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+                shareIntent.type = "image/png"
+                startActivity(Intent.createChooser(shareIntent, "share"))
+            }
+        }
 
+        private fun showProgressDialog() {
 
+        }
     }
 
     companion object {
