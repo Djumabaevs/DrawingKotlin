@@ -246,7 +246,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         private fun showProgressDialog() {
+            mProgressDialog = Dialog(this@MainActivity)
+            mProgressDialog.setContentView(R.layout.dialog_custom_progress)
+            mProgressDialog.show()
+        }
 
+        private fun cancelDialog() {
+            mProgressDialog.dismiss()
         }
     }
 
