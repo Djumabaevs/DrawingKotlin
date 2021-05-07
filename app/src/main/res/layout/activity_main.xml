@@ -190,6 +190,17 @@
      android:layout_margin="5dp"
      />
 
+ <ImageButton
+     android:id="@+id/ib_save"
+     android:layout_width="50dp"
+     android:layout_height="50dp"
+     android:src="@drawable/save"
+     android:contentDescription="save_image"
+     android:scaleType="fitXY"
+     android:layout_margin="5dp"
+     />
+
+
  <Button
      android:id="@+id/btn_chooser"
      android:layout_width="72dp"
