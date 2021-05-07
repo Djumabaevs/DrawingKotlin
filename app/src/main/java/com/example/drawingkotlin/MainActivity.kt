@@ -27,7 +27,12 @@ import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
 import com.github.dhaval2404.colorpicker.util.setVisibility
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
@@ -201,7 +206,27 @@ class MainActivity : AppCompatActivity() {
         private fun onPreExecute() {
             showProgressDialog()
         }
-        private
+        private suspend fun doInBackground(): String = withContext(Dispatchers.IO) {
+            var result = ""
+            if(mBitmap != null) {
+                try {
+                    val bytes = ByteArrayOutputStream()
+                    mBitmap.compress(Bitmap.CompressFormat.PNG, 90, bytes)
+                    val f = File(externalCacheDir!!.absoluteFile.toString() +
+                    File.separator + "KotlinDrawing_" + System.currentTimeMillis()/1000 + ".png")
+                    val fos  =FileOutputStream(f)
+                    fos.write(bytes.toByteArray())
+                    fos.close()
+                    result = f.absolutePath
+                } catch (e: java.lang.Exception) {
+                result = ""
+                    e.printStackTrace()
+                }
+            }
+            return@withContext result
+        }
+
+
     }
 
     companion object {
