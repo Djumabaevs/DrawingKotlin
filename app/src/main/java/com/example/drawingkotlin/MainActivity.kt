@@ -243,6 +243,13 @@ class MainActivity : AppCompatActivity() {
             }
             return@withContext result
         }
+
+
+
+
+
+
+
         private fun onPostExecute(result: String?) {
             cancelDialog()
             if(!result!!.isEmpty()) {
@@ -261,6 +268,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
+
+
+
+
+
         private fun showProgressDialog() {
             mProgressDialog = Dialog(this@MainActivity)
             mProgressDialog.setContentView(R.layout.dialog_custom_progress)
@@ -271,13 +285,6 @@ class MainActivity : AppCompatActivity() {
             mProgressDialog.dismiss()
         }
     }
-
-
-
-
-
-
-
 
     companion object {
         private const val STORAGE_PERMISSION_CODE  = 1
