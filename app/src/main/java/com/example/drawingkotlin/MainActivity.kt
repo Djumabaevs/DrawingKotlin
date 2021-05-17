@@ -101,6 +101,10 @@ class MainActivity : AppCompatActivity() {
                 requestStoragePermission()
             }
         }
+
+        binding.ibClear.setOnClickListener {
+           startActivity( Intent(this@MainActivity, MainActivity::class.java))
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -206,7 +210,6 @@ class MainActivity : AppCompatActivity() {
         view.draw(canvas)
         return returnedBitmap
     }
-
 
 
 
